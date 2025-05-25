@@ -1,0 +1,26 @@
+﻿@page
+@model AddEventModel
+@{
+    ViewData["Title"] = "Adicionar Evento";
+}
+
+<h1>Adicionar Evento</h1>
+
+<form method="post">
+    <label>Título:</label><br />
+    <input asp-for="Evento.Titulo" /><br /><br />
+
+    <label>Data:</label><br />
+    <input asp-for="Evento.Data" type="date" /><br /><br />
+
+    <label>Local:</label><br />
+    <input asp-for="Evento.Local" /><br /><br />
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+@if (Model.EventoCriado)
+{
+    <h2>Evento criado com sucesso!</h2>
+    <p>@Model.Evento.Titulo - @Model.Evento.Data.ToShortDateString() - @Model.Evento.Local</p>
+}

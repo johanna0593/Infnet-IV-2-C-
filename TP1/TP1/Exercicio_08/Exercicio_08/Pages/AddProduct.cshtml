@@ -1,0 +1,23 @@
+﻿@page
+@model ProductCatalog.Pages.AddProductModel
+
+<h2>Adicionar Produto</h2>
+
+<form method="post">
+    <div>
+        <label>Nome:</label>
+        <input asp-for="Nome" />
+    </div>
+    <div>
+        <label>Preço:</label>
+        <input asp-for="Preco" />
+    </div>
+    <button type="submit">Enviar</button>
+</form>
+
+@if (Model.ProdutoCadastrado)
+{
+    <h3>Produto Cadastrado:</h3>
+    <p><strong>Nome:</strong> @Model.Nome</p>
+    <p><strong>Preço:</strong> R$ @Model.Preco</p>
+}
