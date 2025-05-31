@@ -1,0 +1,18 @@
+﻿@page
+@model Exercicio_01.Pages.CityManager.CreateCityModel
+@{
+    ViewData["Title"] = "Cadastrar Cidade";
+}
+
+<h2>Cadastrar Cidade</h2>
+
+<form method="post">
+    <label>Nome da Cidade:</label>
+    <input type="text" asp-for="CityName" />
+    <button type="submit">Enviar</button>
+</form>
+
+@if (Model.SubmittedCity != null)
+{
+    <p>Você cadastrou a cidade: <strong>@Model.SubmittedCity</strong></p>
+}
