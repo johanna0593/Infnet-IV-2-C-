@@ -1,0 +1,42 @@
+﻿@page
+@model Exercicio_11.Pages.FileManager.ReadFilesModel
+@{
+    ViewData["Title"] = "Leitura de Arquivos";
+}
+
+<h2>Leitura de Arquivos .txt em wwwroot/files</h2>
+
+@if (Model.FileNames.Count == 0)
+{
+    <p class="text-warning">Nenhum arquivo .txt encontrado em <code>wwwroot/files</code>.</p>
+}
+else
+{
+    <p>Arquivos disponíveis:</p>
+    <ul class="list-group">
+        @foreach (var fname in Model.FileNames)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @* Link para recarregar a página passando ?fileName={fname} *@
+                <a asp-page="/FileManager/ReadFiles"
+                   asp-route-fileName="@fname">
+                    @fname
+                </a>
+                <a href="~/files/@fname" target="_blank" class="btn btn-sm btn-outline-secondary">
+                    Download
+                </a>
+            </li>
+        }
+    </ul>
+}
+
+@if (Model.FileContent != null)
+{
+    <hr />
+    <h4>Conteúdo do arquivo selecionado:</h4>
+    <pre class="bg-light p-3 border">@Model.FileContent</pre>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

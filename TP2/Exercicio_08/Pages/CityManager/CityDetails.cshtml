@@ -1,0 +1,17 @@
+﻿@page "{cityName}"
+@model Exercicio_08.Pages.CityManager.CityDetailsModel
+
+@{
+    ViewData["Title"] = "Detalhes da Cidade";
+}
+
+<h2>Detalhes da Cidade</h2>
+
+@if (!string.IsNullOrEmpty(Model.CityName))
+{
+    <p>Você está vendo detalhes de: <strong>@Model.CityName</strong></p>
+}
+else
+{
+    <p>Nenhuma cidade fornecida na URL.</p>
+}
