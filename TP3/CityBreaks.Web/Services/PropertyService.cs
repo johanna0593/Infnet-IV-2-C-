@@ -32,5 +32,33 @@ namespace CityBreaks.Web.Services
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task<List<Property>> GetFilteredAsync(decimal? minPrice, decimal? maxPrice, string cityName, string propertyName)
+        {
+            IQueryable<Property> query = _context.Properties
+                .Include(p => p.City)
+                .Where(p => p.DeletedAt == null); // para ignorar propriedades excluídas logicamente
+
+            if (minPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= minPrice.Value);
+            }
+
+            if (maxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= maxPrice.Value);
+            }
+
+            if (!string.IsNullOrEmpty(cityName))
+            {
+                query = query.Where(p => EF.Functions.Collate(p.City.Name, "NOCASE").Contains(cityName));
+            }
+
+            if (!string.IsNullOrEmpty(propertyName))
+            {
+                query = query.Where(p => EF.Functions.Collate(p.Name, "NOCASE").Contains(propertyName));
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }

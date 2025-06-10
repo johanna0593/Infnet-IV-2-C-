@@ -1,0 +1,44 @@
+@page
+@model CityBreaks.Web.Pages.FilterPropertiesModel
+@{
+    ViewData["Title"] = "Filtrar Propriedades";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="get">
+    <div>
+        <label>Preço Mínimo:</label>
+        <input type="number" step="0.01" name="minPrice" value="@Model.MinPrice" />
+    </div>
+    <div>
+        <label>Preço Máximo:</label>
+        <input type="number" step="0.01" name="maxPrice" value="@Model.MaxPrice" />
+    </div>
+    <div>
+        <label>Nome da Cidade:</label>
+        <input type="text" name="cityName" value="@Model.CityName" />
+    </div>
+    <div>
+        <label>Nome da Propriedade:</label>
+        <input type="text" name="propertyName" value="@Model.PropertyName" />
+    </div>
+    <button type="submit">Filtrar</button>
+</form>
+
+@if (Model.Properties != null && Model.Properties.Any())
+{
+<h2>Resultados:</h2>
+<ul>
+    @foreach (var prop in Model.Properties)
+        {
+    <li>
+        <strong>@prop.Name</strong> em @prop.City.Name - Preço: @prop.Price.ToString("C")
+    </li>
+        }
+</ul>
+}
+else if (Model.Properties != null)
+{
+<p>Nenhuma propriedade encontrada com os filtros informados.</p>
+}
