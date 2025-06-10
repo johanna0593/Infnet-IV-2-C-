@@ -10,6 +10,8 @@ builder.Services.AddDbContext<CityBreaksContext>(options =>
 // Exercício 2 – Registrando Razor Pages
 builder.Services.AddRazorPages();
 
+builder.Services.AddScoped<ICityService, CityService>();
+
 var app = builder.Build();
 
 // Exercício 2 – Configurações padrão do pipeline HTTP
