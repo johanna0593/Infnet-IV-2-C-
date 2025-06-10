@@ -1,11 +1,15 @@
-﻿namespace CityBreaks.Web.Models
+﻿namespace CityBreaks.Web.Models;
+
+public class Property
 {
-    public class Property
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string City { get; set; } = string.Empty;
-        public decimal Price { get; set; }
-    }
+    public int Id { get; set; }
+
+    public string Name { get; set; } = string.Empty;
+
+    public string Description { get; set; } = string.Empty;
+
+    public decimal PricePerNight { get; set; }
+
+    public int CityId { get; set; }
+    public City City { get; set; } = null!;
 }
