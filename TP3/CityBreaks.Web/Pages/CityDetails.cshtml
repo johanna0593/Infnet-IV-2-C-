@@ -1,0 +1,22 @@
+@page "{Name?}"
+@model CityBreaks.Web.Pages.CityDetailsModel
+
+<h2>Detalhes da Cidade: @Model.City?.Name</h2>
+
+@if (Model.City == null)
+{
+<p>Cidade não encontrada.</p>
+}
+else
+{
+<p>País: @Model.City.Country.Name</p>
+
+<h3>Propriedades</h3>
+
+<ul>
+    @foreach (var prop in Model.City.Properties)
+        {
+    <li>@prop.Name - Preço: @prop.Price</li>
+        }
+</ul>
+}
