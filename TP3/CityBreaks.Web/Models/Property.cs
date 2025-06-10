@@ -25,5 +25,7 @@ namespace CityBreaks.Web.Data
 
         // Se for implementar exclusão lógica depois
         public DateTime? DeletedAt { get; set; }
+
+        public DateTime? DeletedAt { get; set; }
     }
 }

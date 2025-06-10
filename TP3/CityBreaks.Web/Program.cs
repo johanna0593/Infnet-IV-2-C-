@@ -11,6 +11,7 @@ builder.Services.AddDbContext<CityBreaksContext>(options =>
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<IPropertyService, PropertyService>();
 
 var app = builder.Build();
 
