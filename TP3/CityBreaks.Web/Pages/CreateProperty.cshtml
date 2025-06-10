@@ -1,0 +1,38 @@
+@page
+@model CityBreaks.Web.Pages.CreatePropertyModel
+
+<h2>Criar Nova Propriedade</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="NewProperty.Name"></label>
+        <input asp-for="NewProperty.Name" />
+        <span asp-validation-for="NewProperty.Name"></span>
+    </div>
+
+    <div>
+        <label asp-for="NewProperty.Description"></label>
+        <textarea asp-for="NewProperty.Description"></textarea>
+        <span asp-validation-for="NewProperty.Description"></span>
+    </div>
+
+    <div>
+        <label asp-for="NewProperty.Price"></label>
+        <input asp-for="NewProperty.Price" type="number" step="0.01" />
+        <span asp-validation-for="NewProperty.Price"></span>
+    </div>
+
+    <div>
+        <label>Cidade</label>
+        <select asp-for="NewProperty.CityId" asp-items="Model.CitiesSelectList">
+            <option value="">-- Selecione a Cidade --</option>
+        </select>
+        <span asp-validation-for="NewProperty.CityId"></span>
+    </div>
+
+    <button type="submit">Salvar</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

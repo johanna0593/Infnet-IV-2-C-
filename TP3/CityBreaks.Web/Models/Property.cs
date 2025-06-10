@@ -1,15 +1,29 @@
-﻿namespace CityBreaks.Web.Models;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class Property
+namespace CityBreaks.Web.Data
 {
-    public int Id { get; set; }
+    public class Property
+    {
+        [Key]
+        public int Id { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+        [Required]
+        public string Name { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
+        public string? Description { get; set; }
 
-    public decimal PricePerNight { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Price { get; set; }
 
-    public int CityId { get; set; }
-    public City City { get; set; } = null!;
+        // Chave estrangeira para a cidade
+        public int CityId { get; set; }
+
+        // Navegação para a cidade
+        public City? City { get; set; }
+
+        // Se for implementar exclusão lógica depois
+        public DateTime? DeletedAt { get; set; }
+    }
 }
